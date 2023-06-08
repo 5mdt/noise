@@ -2,6 +2,58 @@
 <html>
 <head>
     <title>Noise Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #cccccc;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #4caf50;
+            color: #ffffff;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
     <script>
         let audioContext;
         let source;
@@ -105,9 +157,9 @@
 </head>
 <body>
     <h1>Noise Generator</h1>
-    <button onclick="startNoise('brown')">Play Brown Noise</button>
-    <button onclick="startNoise('pink')">Play Pink Noise</button>
-    <button onclick="startNoise('white')">Play White Noise</button>
+    <button onclick="startNoise('brown')">Play Brown Noise</button><p></p>
+    <button onclick="startNoise('pink')">Play Pink Noise</button><p></p>
+    <button onclick="startNoise('white')">Play White Noise</button><p></p>
     <button onclick="stopNoise()">Stop Noise</button>
 </body>
 </html>
