@@ -56,12 +56,12 @@
         let source;
         let tempo = 30;
         let cycleCount = 0; // Track the number of cycles for noise regeneration
-        const cycleLimit = 10; // Number of cycles after which to regenerate the noise
+        const cycleLimit = 3; // Number of cycles after which to regenerate the noise
 
 
         // Function to generate Brown noise
         function generateBrownNoise() {
-            const bufferSize = 655;
+            const bufferSize = 65500;
             const buffer = new Float32Array(bufferSize);
             let lastOut = 0.0;
 
