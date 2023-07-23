@@ -5,53 +5,50 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 20px;
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s; /* Add transition for smooth theme change */
+        }
+
+        /* Light mode */
+        @media (prefers-color-scheme: light) {
+            body {
+                background-color: white;
+                color: black;
+            }
+        }
+
+        /* Dark mode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: black;
+                color: white;
+            }
         }
 
         h1 {
-            text-align: center;
-            color: #333333;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #cccccc;
+            margin-top: 20px;
         }
 
         button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            background-color: #4caf50;
-            color: #ffffff;
-            font-weight: bold;
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
             border: none;
-            border-radius: 5px;
+            background-color: #3498db;
+            color: #fff;
             cursor: pointer;
+            border-radius: 4px;
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #2980b9;
         }
 
-        #container {
-            max-width: 400px;
-            margin: 0 auto;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        /* Responsive styles */
+        @media only screen and (max-width: 600px) {
+            button {
+                font-size: 14px;
+            }
         }
     </style>
     <script>
@@ -161,5 +158,9 @@
     <button onclick="startNoise('pink')">Play Pink Noise</button><p></p>
     <button onclick="startNoise('white')">Play White Noise</button><p></p>
     <button onclick="stopNoise()">Stop Noise</button>
+    <hr>
+    <h2>Authors</h2>
+        - <a href="https://github.com/nett00n">@nett00n</a>
+    <h3>2024, Tbilisi, Sakartvelo</h3>
 </body>
 </html>
