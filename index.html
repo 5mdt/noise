@@ -55,10 +55,13 @@
         let audioContext;
         let source;
         let tempo = 30;
+        let cycleCount = 0; // Track the number of cycles for noise regeneration
+        const cycleLimit = 10; // Number of cycles after which to regenerate the noise
+
 
         // Function to generate Brown noise
         function generateBrownNoise() {
-            const bufferSize = 65536;
+            const bufferSize = 655;
             const buffer = new Float32Array(bufferSize);
             let lastOut = 0.0;
 
@@ -113,7 +116,7 @@
         }
 
         // Function to start playing the noise
-        function startNoise(type, tempo) {
+        function startNoise(type) {
             if (!audioContext) {
                 audioContext = new (window.AudioContext || window.webkitAudioContext)();
             } else {
@@ -128,6 +131,14 @@
             source.connect(audioContext.destination);
             source.loop = true; // Loop the sound
             source.start();
+
+            cycleCount++; // Increment cycle count
+            if (cycleCount >= cycleLimit) {
+                cycleCount = 0; // Reset cycle count
+                audioContext.close().then(function () {
+                    audioContext = null; // Close the current audio context to force regeneration of noise
+                });
+            }
         }
 
         // Function to stop playing the noise
@@ -137,6 +148,7 @@
                 source.disconnect();
             }
         }
+
         // Function to generate the selected noise type
         function generateNoise(type) {
             switch (type) {
