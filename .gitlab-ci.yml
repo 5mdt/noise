@@ -1,0 +1,21 @@
+# .gitlab-ci.yml
+
+# Set the runner and Docker image to use. You can change the image as needed.
+image: golang:latest
+
+# Define stages for the pipeline
+stages:
+  - build
+  - publish
+
+# Define the job for the pipeline
+minify_html:
+  stage: build
+  script:
+    - go install github.com/tdewolff/minify/v2/cmd/minify@latest
+    - minify -r -o public/ ./*.html
+  artifacts:
+    paths:
+      - ./public/
+  only:
+    - main
