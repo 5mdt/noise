@@ -26,6 +26,7 @@ jobs:
           mkdir -p ./pages
           minify -r -o ./pages/ ./*.html
           cp ./*.png ./pages/
+          cp ./LICENSE ./pages/
 
       - name: Publish generated content to GitHub Pages
         uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
