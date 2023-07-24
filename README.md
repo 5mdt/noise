@@ -14,6 +14,8 @@ There is no tracking, ads or even cookies here. It's absolutely free to use and 
 
 ## Demo
 
+![GitHub Actions Badge](https://github.com/5mdt/noise/actions/workflows/build.yml/badge.svg?branch=main)
+
 - [On Github Pages](https://5mdt.github.io/noise/)
 
 ## Installation
