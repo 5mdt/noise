@@ -1,7 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Noise Generator</title>
+    <title>5mdt Noise Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add the inline manifest using a <script> tag -->
+    <script type="application/manifest+json">
+    {
+      "name": "5mdt Noise Generator",
+      "short_name": "5mdtNoiseGen",
+      "start_url": "./",
+      "display": "standalone",
+      "background_color": "#ffffff",
+      "theme_color": "#3498db",
+      "icons": [
+        {
+          "src": "./icon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png",
+          "purpose": "any maskable"
+        },
+        {
+          "src": "./icon-512x512.png",
+          "sizes": "512x512",
+          "type": "image/png",
+          "purpose": "any maskable"
+        }
+      ]
+    }
+    </script>
+
+    <!-- Add the PWA-specific meta tags -->
+    <meta name="theme-color" content="#3498db">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Add the icon links -->
+    <link rel="apple-touch-icon" href="icon-192x192.png">
+    <link rel="icon" sizes="192x192" href="icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icon-512x512.png">
+    <link rel="icon" sizes="512x512" href="icon-512x512.png">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -171,6 +209,7 @@
 </head>
 <body>
     <h1>Noise Generator</h1>
+    <p>There is no tracking, ads or even cookies here. It's absolutely free to use and modify</p>
     <p><button onclick="startNoise('brown')">Play Brown Noise</button></p>
     <p><button onclick="startNoise('pink')">Play Pink Noise</button></p>
     <p><button onclick="startNoise('white')">Play White Noise</button></p>
@@ -180,6 +219,6 @@
     <p>Source Code is placed on <a href="https://github.com/5mdt/noise">Github</a></p>
     <p>Authors:</p>
     <p>- <a href="https://github.com/nett00n">@nett00n</a></p>
-    2024, Tbilisi, Sakartvelo
+    2023, Tbilisi, Sakartvelo
 </body>
 </html>
