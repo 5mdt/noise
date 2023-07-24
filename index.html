@@ -32,12 +32,17 @@
         button {
             margin: 10px;
             padding: 10px 20px;
-            font-size: 16px;
+            font-size: 36px;
             border: none;
             background-color: #3498db;
             color: #fff;
             cursor: pointer;
             border-radius: 4px;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
         }
 
         button:hover {
@@ -166,13 +171,15 @@
 </head>
 <body>
     <h1>Noise Generator</h1>
-    <button onclick="startNoise('brown')">Play Brown Noise</button><p></p>
-    <button onclick="startNoise('pink')">Play Pink Noise</button><p></p>
-    <button onclick="startNoise('white')">Play White Noise</button><p></p>
-    <button onclick="stopNoise()">Stop Noise</button>
+    <p><button onclick="startNoise('brown')">Play Brown Noise</button></p>
+    <p><button onclick="startNoise('pink')">Play Pink Noise</button></p>
+    <p><button onclick="startNoise('white')">Play White Noise</button></p>
+    <p><button onclick="stopNoise()">Stop Noise</button></p>
     <hr>
-    <h2>Authors</h2>
-        - <a href="https://github.com/nett00n">@nett00n</a>
-    <h3>2024, Tbilisi, Sakartvelo</h3>
+    <p>Made with pure HTML+CSS+JS</p>
+    <p>Source Code is placed on <a href="https://github.com/5mdt/noise">Github</a></p>
+    <p>Authors:</p>
+    <p>- <a href="https://github.com/nett00n">@nett00n</a></p>
+    2024, Tbilisi, Sakartvelo
 </body>
 </html>

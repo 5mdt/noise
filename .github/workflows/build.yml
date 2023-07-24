@@ -1,0 +1,31 @@
+# .github/workflows/build.yml
+
+name: Build and Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: latest
+
+      - name: Install and run minify
+        run: |
+          go install github.com/tdewolff/minify/v2/cmd/minify@latest
+          minify -r -o public/ ./*.html
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_dir: ./public
