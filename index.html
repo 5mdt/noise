@@ -205,7 +205,30 @@
                     return [];
             }
         }
-    </script>
+        // PWA
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+            // Check if the PWA is installable
+            if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+              return;
+            }
+
+            // Show the "Add to Home Screen" button
+            const installBtn = document.getElementById('installBtn');
+            installBtn.style.display = 'block';
+
+            // Add click event listener to the button
+            installBtn.addEventListener('click', () => {
+              // Prompt the user to install the PWA
+              window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                e.prompt();
+              });
+            });
+          });
+        }
+      </script>
+
 </head>
 <body>
     <h1>5mdt Noise Generator</h1>
@@ -215,6 +238,7 @@
     <p><button onclick="startNoise('white')">Play White Noise</button></p>
     <p><button onclick="stopNoise()">Stop Noise</button></p>
     <hr>
+    <p><button id="installBtn" style="display: none;">Add to Home Screen</button></p>
     <p>Made with pure HTML+CSS+JS</p>
     <p>Authors:</p>
     <p>- <a href="https://github.com/nett00n">@nett00n</a></p>
