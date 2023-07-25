@@ -1,306 +1,306 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>5mdt Noise Generator</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Add the inline manifest using a <script> tag -->
-    <script type="application/manifest+json">
+  <title>5mdt Noise Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Add the inline manifest using a <script> tag -->
+  <script type="application/manifest+json">
+  {
+    "name": "5mdt Noise Generator",
+    "short_name": "5mdtNoiseGen",
+    "start_url": "./",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#3498db",
+    "icons": [
     {
-      "name": "5mdt Noise Generator",
-      "short_name": "5mdtNoiseGen",
-      "start_url": "./",
-      "display": "standalone",
-      "background_color": "#ffffff",
-      "theme_color": "#3498db",
-      "icons": [
-        {
-          "src": "./icon-192x192.png",
-          "sizes": "192x192",
-          "type": "image/png",
-          "purpose": "any maskable"
-        },
-        {
-          "src": "./icon-512x512.png",
-          "sizes": "512x512",
-          "type": "image/png",
-          "purpose": "any maskable"
-        }
-      ]
+      "src": "./icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
-    </script>
+    ]
+  }
+  </script>
 
-    <!-- Add the PWA-specific meta tags -->
-    <meta name="theme-color" content="#3498db">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Add the PWA-specific meta tags -->
+  <meta name="theme-color" content="#3498db">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <!-- Add the icon links -->
-    <link rel="apple-touch-icon" href="icon-192x192.png">
-    <link rel="icon" sizes="192x192" href="icon-192x192.png">
-    <link rel="apple-touch-icon" sizes="512x512" href="icon-512x512.png">
-    <link rel="icon" sizes="512x512" href="icon-512x512.png">
+  <!-- Add the icon links -->
+  <link rel="apple-touch-icon" href="icon-192x192.png">
+  <link rel="icon" sizes="192x192" href="icon-192x192.png">
+  <link rel="apple-touch-icon" sizes="512x512" href="icon-512x512.png">
+  <link rel="icon" sizes="512x512" href="icon-512x512.png">
 
-    <style>
+  <style>
 
-        body {
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            transition: background-color 0.3s, color 0.3s; /* Add transition for smooth theme change */
-        }
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      transition: background-color 0.3s, color 0.3s; /* Add transition for smooth theme change */
+    }
 
-        .container {
-            max-width: 620px;
-            margin: 0 auto;
-        }
+    .container {
+      max-width: 620px;
+      margin: 0 auto;
+    }
 
-        /* Light mode */
-        @media (prefers-color-scheme: light) {
-            body {
-                background-color: white;
-                color: black;
-            }
-        }
+    /* Light mode */
+    @media (prefers-color-scheme: light) {
+      body {
+        background-color: white;
+        color: black;
+      }
+    }
 
-        /* Dark mode */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: black;
-                color: white;
-            }
-        }
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: black;
+        color: white;
+      }
+    }
 
-        h1 {
-            margin-top: 20px;
-            font-size: 2.2em;
-            font-weight: 800;
-        }
+    h1 {
+      margin-top: 20px;
+      font-size: 2.2em;
+      font-weight: 800;
+    }
 
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 16px 20%;
-        }
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 20%;
+    }
 
-        button {
-            margin: 10px;
-            padding: 10px 20px;
-            font-size: 1.5em;
-            width: 100%;
-            border: none;
-            background-color: #3498db;
-            color: black;
-            cursor: pointer;
-            border-radius: 4px;
-            border-bottom: 1px solid rgba(15, 17, 17, 0.25) ;
-            font-family: 'Arial', sans-serif;
-        }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1.5em;
+      width: 100%;
+      border: none;
+      background-color: #3498db;
+      color: black;
+      cursor: pointer;
+      border-radius: 4px;
+      border-bottom: 1px solid rgba(15, 17, 17, 0.25) ;
+      font-family: 'Arial', sans-serif;
+    }
 
-        a {
-            color: #3498db;
-            text-decoration: none;
-        }
+    a {
+      color: #3498db;
+      text-decoration: none;
+    }
 
-        button:hover {
-            background-color: #2980b9;
-        }
+    button:hover {
+      background-color: #2980b9;
+    }
 
-        #brown {
-            background-color: #c1b3a8;
-        }
+    #brown {
+      background-color: #c1b3a8;
+    }
 
-        #pink {
-            background-color: #FFD1DC;
-        }
+    #pink {
+      background-color: #FFD1DC;
+    }
 
-        #white {
-            background-color: #F3F8FF;
-        }
+    #white {
+      background-color: #F3F8FF;
+    }
 
-        #stop {
-            background-color: #FFA8A8;
-            margin-top: 48px;
-        }
+    #stop {
+      background-color: #FFA8A8;
+      margin-top: 48px;
+    }
 
-        #installBtn {
-            display: none;
-            font-size: 0.8em;
-            background-color: #f4f4f4;
-            width: 200px;
-            margin: 0 auto;
-        }
+    #installBtn {
+      display: none;
+      font-size: 0.8em;
+      background-color: #f4f4f4;
+      width: 200px;
+      margin: 0 auto;
+    }
 
-        footer {
-            color: grey;
-        }
+    footer {
+      color: grey;
+    }
 
-        /* Responsive styles */
-        @media only screen and (max-width: 600px) {
-            button {
-                /* font-size: 14px; */
-            }
-            #installBtn {
-                display: block;
-            }
-        }
-    </style>
-    <script>
-        let audioContext;
-        let source;
-        let tempo = 30;
-        let cycleCount = 0; // Track the number of cycles for noise regeneration
-        const cycleLimit = 3; // Number of cycles after which to regenerate the noise
+    /* Responsive styles */
+    @media only screen and (max-width: 600px) {
+      button {
+        /* font-size: 14px; */
+      }
+      #installBtn {
+        display: block;
+      }
+    }
+  </style>
+  <script>
+    let audioContext;
+    let source;
+    let tempo = 30;
+    let cycleCount = 0; // Track the number of cycles for noise regeneration
+    const cycleLimit = 3; // Number of cycles after which to regenerate the noise
 
 
-        // Function to generate Brown noise
-        function generateBrownNoise() {
-            const bufferSize = 65500;
-            const buffer = new Float32Array(bufferSize);
-            let lastOut = 0.0;
+    // Function to generate Brown noise
+    function generateBrownNoise() {
+      const bufferSize = 65500;
+      const buffer = new Float32Array(bufferSize);
+      let lastOut = 0.0;
 
-            for (let i = 0; i < bufferSize; i++) {
-                const whiteNoise = (Math.random() * 2 - 1) / tempo;
-                buffer[i] = (lastOut + (0.02 * whiteNoise)) / 1.02;
-                lastOut = buffer[i];
-                buffer[i] *= 3.5; // Amplify the sound
-            }
+      for (let i = 0; i < bufferSize; i++) {
+        const whiteNoise = (Math.random() * 2 - 1) / tempo;
+        buffer[i] = (lastOut + (0.02 * whiteNoise)) / 1.02;
+        lastOut = buffer[i];
+        buffer[i] *= 3.5; // Amplify the sound
+      }
 
-            return buffer;
-        }
+      return buffer;
+    }
 
-        // Function to generate Pink noise
-        function generatePinkNoise() {
-            const bufferSize = 65536;
-            const buffer = new Float32Array(bufferSize);
-            let b0 = 0;
-            let b1 = 0;
-            let b2 = 0;
-            let b3 = 0;
-            let b4 = 0;
-            let b5 = 0;
-            let b6 = 0;
+    // Function to generate Pink noise
+    function generatePinkNoise() {
+      const bufferSize = 65536;
+      const buffer = new Float32Array(bufferSize);
+      let b0 = 0;
+      let b1 = 0;
+      let b2 = 0;
+      let b3 = 0;
+      let b4 = 0;
+      let b5 = 0;
+      let b6 = 0;
 
-            for (let i = 0; i < bufferSize; i++) {
-                const whiteNoise = (Math.random() * 2 - 1) / tempo;
-                b0 = 0.99886 * b0 + whiteNoise * 0.0555179;
-                b1 = 0.99332 * b1 + whiteNoise * 0.0750759;
-                b2 = 0.96900 * b2 + whiteNoise * 0.1538520;
-                b3 = 0.86650 * b3 + whiteNoise * 0.3104856;
-                b4 = 0.55000 * b4 + whiteNoise * 0.5329522;
-                b5 = -0.7616 * b5 - whiteNoise * 0.0168980;
-                buffer[i] = b0 + b1 + b2 + b3 + b4 + b5 + b6 + whiteNoise * 0.5362;
-                buffer[i] *= 0.11; // Amplify the sound
-                b6 = whiteNoise * 0.115926;
-            }
+      for (let i = 0; i < bufferSize; i++) {
+        const whiteNoise = (Math.random() * 2 - 1) / tempo;
+        b0 = 0.99886 * b0 + whiteNoise * 0.0555179;
+        b1 = 0.99332 * b1 + whiteNoise * 0.0750759;
+        b2 = 0.96900 * b2 + whiteNoise * 0.1538520;
+        b3 = 0.86650 * b3 + whiteNoise * 0.3104856;
+        b4 = 0.55000 * b4 + whiteNoise * 0.5329522;
+        b5 = -0.7616 * b5 - whiteNoise * 0.0168980;
+        buffer[i] = b0 + b1 + b2 + b3 + b4 + b5 + b6 + whiteNoise * 0.5362;
+        buffer[i] *= 0.11; // Amplify the sound
+        b6 = whiteNoise * 0.115926;
+      }
 
-            return buffer;
-        }
+      return buffer;
+    }
 
-        // Function to generate White noise
-        function generateWhiteNoise() {
-            const bufferSize = 65536;
-            const buffer = new Float32Array(bufferSize);
+    // Function to generate White noise
+    function generateWhiteNoise() {
+      const bufferSize = 65536;
+      const buffer = new Float32Array(bufferSize);
 
-            for (let i = 0; i < bufferSize; i++) {
-                buffer[i] = (Math.random() * 2 - 1) / tempo;
-            }
+      for (let i = 0; i < bufferSize; i++) {
+        buffer[i] = (Math.random() * 2 - 1) / tempo;
+      }
 
-            return buffer;
-        }
+      return buffer;
+    }
 
-        // Function to start playing the noise
-        function startNoise(type) {
-            if (!audioContext) {
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            } else {
-                stopNoise(); // Stop any ongoing noise before starting a new one
-            }
+    // Function to start playing the noise
+    function startNoise(type) {
+      if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      } else {
+        stopNoise(); // Stop any ongoing noise before starting a new one
+      }
 
-            const noiseBuffer = audioContext.createBuffer(1, generateNoise(type, tempo).length, audioContext.sampleRate);
-            noiseBuffer.getChannelData(0).set(generateNoise(type, tempo));
+      const noiseBuffer = audioContext.createBuffer(1, generateNoise(type, tempo).length, audioContext.sampleRate);
+      noiseBuffer.getChannelData(0).set(generateNoise(type, tempo));
 
-            source = audioContext.createBufferSource();
-            source.buffer = noiseBuffer;
-            source.connect(audioContext.destination);
-            source.loop = true; // Loop the sound
-            source.start();
+      source = audioContext.createBufferSource();
+      source.buffer = noiseBuffer;
+      source.connect(audioContext.destination);
+      source.loop = true; // Loop the sound
+      source.start();
 
-            cycleCount++; // Increment cycle count
-            if (cycleCount >= cycleLimit) {
-                cycleCount = 0; // Reset cycle count
-                audioContext.close().then(function () {
-                    audioContext = null; // Close the current audio context to force regeneration of noise
-                });
-            }
-        }
+      cycleCount++; // Increment cycle count
+      if (cycleCount >= cycleLimit) {
+        cycleCount = 0; // Reset cycle count
+        audioContext.close().then(function () {
+          audioContext = null; // Close the current audio context to force regeneration of noise
+        });
+      }
+    }
 
-        // Function to stop playing the noise
-        function stopNoise() {
-            if (source) {
-                source.stop();
-                source.disconnect();
-            }
-        }
+    // Function to stop playing the noise
+    function stopNoise() {
+      if (source) {
+        source.stop();
+        source.disconnect();
+      }
+    }
 
-        // Function to generate the selected noise type
-        function generateNoise(type) {
-            switch (type) {
-                case 'brown':
-                    return generateBrownNoise();
-                case 'pink':
-                    return generatePinkNoise();
-                case 'white':
-                    return generateWhiteNoise();
-                default:
-                    return [];
-            }
-        }
-        // PWA
-        if ('serviceWorker' in navigator) {
-          window.addEventListener('load', () => {
-            // Check if the PWA is installable
-            if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
-              return;
-            }
+    // Function to generate the selected noise type
+    function generateNoise(type) {
+      switch (type) {
+        case 'brown':
+          return generateBrownNoise();
+        case 'pink':
+          return generatePinkNoise();
+        case 'white':
+          return generateWhiteNoise();
+        default:
+          return [];
+      }
+    }
+    // PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+      // Check if the PWA is installable
+      if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+        return;
+      }
 
-            // Show the "Add to Home Screen" button
-            const installBtn = document.getElementById('installBtn');
+      // Show the "Add to Home Screen" button
+      const installBtn = document.getElementById('installBtn');
 
-            // Add click event listener to the button
-            installBtn.addEventListener('click', () => {
-              // Prompt the user to install the PWA
-              window.addEventListener('beforeinstallprompt', (e) => {
-                e.preventDefault();
-                e.prompt();
-              });
-            });
-          });
-        }
-      </script>
+      // Add click event listener to the button
+      installBtn.addEventListener('click', () => {
+        // Prompt the user to install the PWA
+        window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        e.prompt();
+        });
+      });
+      });
+    }
+  </script>
 
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>5mdt <br/>Noise Generator</h1>
-        </header>
-        <main>
-            <button onclick="startNoise('brown')" id="brown">▶ Brown Noise</button>
-            <button onclick="startNoise('pink')" id="pink">▶ Pink Noise</button>
-            <button onclick="startNoise('white')" id="white">▶ White Noise</button>
-            <button onclick="stopNoise()" id="stop">⛔ Stop Noise</button>
-            <button id="installBtn">Add to Home Screen</button>
-        </main>
-        <footer>
-            <p>There is no tracking, ads or even cookies here. It's absolutely free to use and modify</p>
-            <p>Made with pure HTML+CSS+JS</p>
-            <p>Authors:</p>
-            <p>- <a href="https://github.com/nett00n">@nett00n</a></p>
-            <p>- <a href="https://github.com/kawaiier">@kawaiier</a></p>
-            <p>Source Code is placed on <a href="https://github.com/5mdt/noise">Github</a></p>
-            <p>This project is licensed under the <a href="LICENSE">MIT License</a></p>
-            <p>2023, Tbilisi, Sakartvelo</p>
-        </footer>
-    </div>
+  <div class="container">
+    <header>
+      <h1>5mdt <br/>Noise Generator</h1>
+    </header>
+    <main>
+      <button onclick="startNoise('brown')" id="brown">▶ Brown Noise</button>
+      <button onclick="startNoise('pink')" id="pink">▶ Pink Noise</button>
+      <button onclick="startNoise('white')" id="white">▶ White Noise</button>
+      <button onclick="stopNoise()" id="stop">⛔ Stop Noise</button>
+      <button id="installBtn">Add to Home Screen</button>
+    </main>
+    <footer>
+      <p>There is no tracking, ads or even cookies here. It's absolutely free to use and modify</p>
+      <p>Made with pure HTML+CSS+JS</p>
+      <p>Authors:</p>
+      <p>- <a href="https://github.com/nett00n">@nett00n</a></p>
+      <p>- <a href="https://github.com/kawaiier">@kawaiier</a></p>
+      <p>Source Code is placed on <a href="https://github.com/5mdt/noise">Github</a></p>
+      <p>This project is licensed under the <a href="LICENSE">MIT License</a></p>
+      <p>2023, Tbilisi, Sakartvelo</p>
+    </footer>
+  </div>
 </body>
 </html>
