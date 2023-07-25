@@ -28,12 +28,6 @@
     ]
   }
   </script>
-
-  <!-- Add the PWA-specific meta tags -->
-  <meta name="theme-color" content="#3498db">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
   <!-- Add the icon links -->
   <link rel="apple-touch-icon" href="icon-192x192.png">
   <link rel="icon" sizes="192x192" href="icon-192x192.png">
@@ -255,27 +249,6 @@
           return [];
       }
     }
-    // PWA
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-      // Check if the PWA is installable
-      if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
-        return;
-      }
-
-      // Show the "Add to Home Screen" button
-      const installBtn = document.getElementById('installBtn');
-
-      // Add click event listener to the button
-      installBtn.addEventListener('click', () => {
-        // Prompt the user to install the PWA
-        window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        e.prompt();
-        });
-      });
-      });
-    }
   </script>
 
 </head>
@@ -289,7 +262,6 @@
       <button onclick="startNoise('pink')" id="pink">▶ Pink Noise</button>
       <button onclick="startNoise('white')" id="white">▶ White Noise</button>
       <button onclick="stopNoise()" id="stop">⛔ Stop Noise</button>
-      <button id="installBtn">Add to Home Screen</button>
     </main>
     <footer>
       <p>There is no tracking, ads or even cookies here. It's absolutely free to use and modify</p>
