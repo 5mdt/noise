@@ -36,7 +36,7 @@ This project is licensed under the [MIT License](LICENSE).
 ## Authors
 
 - [@nett00n](https://github.com/nett00n)
-
+- [@kawaiier](https://github.com/kawaiier)
 ---
 
 2023, Tbilisi, Sakartvelo

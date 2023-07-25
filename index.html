@@ -41,10 +41,16 @@
     <link rel="icon" sizes="512x512" href="icon-512x512.png">
 
     <style>
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             text-align: center;
             transition: background-color 0.3s, color 0.3s; /* Add transition for smooth theme change */
+        }
+
+        .container {
+            max-width: 620px;
+            margin: 0 auto;
         }
 
         /* Light mode */
@@ -65,17 +71,29 @@
 
         h1 {
             margin-top: 20px;
+            font-size: 2.2em;
+            font-weight: 800;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px 20%;
         }
 
         button {
             margin: 10px;
             padding: 10px 20px;
-            font-size: 36px;
+            font-size: 1.5em;
+            width: 100%;
             border: none;
             background-color: #3498db;
-            color: #fff;
+            color: black;
             cursor: pointer;
             border-radius: 4px;
+            border-bottom: 1px solid rgba(15, 17, 17, 0.25) ;
+            font-family: 'Arial', sans-serif;
         }
 
         a {
@@ -87,10 +105,42 @@
             background-color: #2980b9;
         }
 
+        #brown {
+            background-color: #c1b3a8;
+        }
+
+        #pink {
+            background-color: #FFD1DC;
+        }
+
+        #white {
+            background-color: #F3F8FF;
+        }
+
+        #stop {
+            background-color: #FFA8A8;
+            margin-top: 48px;
+        }
+
+        #installBtn {
+            display: none;
+            font-size: 0.8em;
+            background-color: #f4f4f4;
+            width: 200px;
+            margin: 0 auto;
+        }
+
+        footer {
+            color: grey;
+        }
+
         /* Responsive styles */
         @media only screen and (max-width: 600px) {
             button {
-                font-size: 14px;
+                /* font-size: 14px; */
+            }
+            #installBtn {
+                display: block;
             }
         }
     </style>
@@ -215,7 +265,6 @@
 
             // Show the "Add to Home Screen" button
             const installBtn = document.getElementById('installBtn');
-            installBtn.style.display = 'block';
 
             // Add click event listener to the button
             installBtn.addEventListener('click', () => {
@@ -231,19 +280,27 @@
 
 </head>
 <body>
-    <h1>5mdt Noise Generator</h1>
-    <p>There is no tracking, ads or even cookies here. It's absolutely free to use and modify</p>
-    <p><button onclick="startNoise('brown')">Play Brown Noise</button></p>
-    <p><button onclick="startNoise('pink')">Play Pink Noise</button></p>
-    <p><button onclick="startNoise('white')">Play White Noise</button></p>
-    <p><button onclick="stopNoise()">Stop Noise</button></p>
-    <hr>
-    <p><button id="installBtn" style="display: none;">Add to Home Screen</button></p>
-    <p>Made with pure HTML+CSS+JS</p>
-    <p>Authors:</p>
-    <p>- <a href="https://github.com/nett00n">@nett00n</a></p>
-    <p>Source Code is placed on <a href="https://github.com/5mdt/noise">Github</a></p>
-    <p>This project is licensed under the <a href="LICENSE">MIT License</a></p>
-    <p>2023, Tbilisi, Sakartvelo</p>
+    <div class="container">
+        <header>
+            <h1>5mdt <br/>Noise Generator</h1>
+        </header>
+        <main>
+            <button onclick="startNoise('brown')" id="brown">Brown Noise</button>
+            <button onclick="startNoise('pink')" id="pink">Pink Noise</button>
+            <button onclick="startNoise('white')" id="white">White Noise</button>
+            <button onclick="stopNoise()" id="stop">Stop Noise</button>
+            <p><button id="installBtn">Add to Home Screen</button></p>
+        </main>
+        <footer>
+            <p>There is no tracking, ads or even cookies here. It's absolutely free to use and modify</p>
+            <p>Made with pure HTML+CSS+JS</p>
+            <p>Authors:</p>
+            <p>- <a href="https://github.com/nett00n">@nett00n</a></p>
+            <p>- <a href="https://github.com/kawaiier">@kawaiier</a></p>
+            <p>Source Code is placed on <a href="https://github.com/5mdt/noise">Github</a></p>
+            <p>This project is licensed under the <a href="LICENSE">MIT License</a></p>
+            <p>2023, Tbilisi, Sakartvelo</p>
+        </footer>
+    </div>
 </body>
 </html>
