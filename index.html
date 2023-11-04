@@ -138,7 +138,7 @@
       // Function to start playing the noise
       async function startNoise(type) {
         await stopNoise();
-        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        audioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 96000 });
         await audioContext.audioWorklet.addModule("RandomNoiseProcessor.js");
         const randomNoiseNode = new AudioWorkletNode(
           audioContext,
