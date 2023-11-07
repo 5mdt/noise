@@ -10,7 +10,7 @@
 
 The 5mdt Noise Generator is a web-based application that generates different types of noises locally, including brown, white, and pink noise. It allows users to play these noises and control their volume.
 
-There is no tracking, ads or even cookies here. It's absolutely free to use and modify
+There is no tracking, ads or even cookies here. It's absolutely free to use and modify.
 
 ## Demo
 
@@ -33,10 +33,12 @@ To use the 5mdt Noise Generator, simply open the `index.html` file in a web brow
 
 This project is licensed under the [MIT License](LICENSE).
 
-## Authors
+## Authors (alphabetically)
 
-- [@nett00n](https://github.com/nett00n)
+- [@akamenskiy](https://github.com/akamenskiy)
 - [@kawaiier](https://github.com/kawaiier)
+- [@nett00n](https://github.com/nett00n)
+
 ---
 
-2023, Tbilisi, Sakartvelo
+2023
