@@ -9,7 +9,7 @@
     <style>
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: sans-serif;
             text-align: center;
             transition: background-color 0.3s, color 0.3s; /* Add transition for smooth theme change */
         }
@@ -59,7 +59,7 @@
             cursor: pointer;
             border-radius: 4px;
             border-bottom: 1px solid rgba(15, 17, 17, 0.25);
-            font-family: 'Arial', sans-serif;
+            font-family: sans-serif;
         }
 
         a {
@@ -92,7 +92,19 @@
             color: grey;
         }
 
-        /* Responsive styles */
+        #timer {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            padding: 12px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        #timer.active {
+            background-color: #FFA8A8;
+            color: white;
+        }
+
         @media only screen and (max-width: 600px) {
             button {
                 /* font-size: 14px; */
@@ -106,30 +118,69 @@
         brown: "brown",
         white: "white",
       }
+      let countdownTimer;
+      let durationInSeconds = 0;
 
-      // Function to start playing the noise
       async function startNoise(type) {
-        await stopNoise();
-        audioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 96000 });
-        await audioContext.audioWorklet.addModule("RandomNoiseProcessor.js");
-        const randomNoiseNode = new AudioWorkletNode(
-          audioContext,
-          "RandomNoiseProcessor",
-          {
-            processorOptions: {
-              type,
-            }
+          const timerInput = document.getElementById("timer");
+          durationInSeconds = getDurationInSeconds(timerInput.value);
+
+          if (durationInSeconds > 0) {
+              startTimer();
           }
-        );
-        randomNoiseNode.connect(audioContext.destination);
+
+          await stopNoise();
+          audioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 96000 });
+          await audioContext.audioWorklet.addModule("RandomNoiseProcessor.js");
+          const randomNoiseNode = new AudioWorkletNode(
+              audioContext,
+              "RandomNoiseProcessor",
+              {
+                  processorOptions: {
+                      type,
+                  }
+              }
+          );
+          randomNoiseNode.connect(audioContext.destination);
       }
 
-      // Function to stop playing the noise
       async function stopNoise() {
-        if (audioContext) {
-          await audioContext.close()
-          audioContext = null;
-        }
+          if (audioContext) {
+              await audioContext.close();
+              audioContext = null;
+              stopTimer();
+          }
+      }
+
+      function startTimer() {
+          countdownTimer = setInterval(function () {
+              durationInSeconds--;
+              if (durationInSeconds <= 0) {
+                  stopNoise();
+              }
+              updateTimerInput();
+          }, 1000);
+      }
+
+      function stopTimer() {
+          clearInterval(countdownTimer);
+      }
+
+      function updateTimerInput() {
+          const timerInput = document.getElementById("timer");
+          const minutes = Math.floor(durationInSeconds / 60);
+          const seconds = durationInSeconds % 60;
+          const formattedTime = `${padZero(minutes)}:${padZero(seconds)}`;
+          timerInput.value = formattedTime;
+      }
+
+      function getDurationInSeconds(timeValue) {
+          const [minutes, seconds] = timeValue.split(":").map(Number);
+          return minutes * 60 + seconds;
+      }
+
+      function padZero(number) {
+          return number < 10 ? `0${number}` : number;
       }
 
     </script>
@@ -141,11 +192,14 @@
         <h1>5mdt <br/>Noise Generator</h1>
     </header>
     <main>
+        <label for="#timer">Timer (mm:ss):</label>
+        <input type="time" id="timer" value="00:00">
         <button onclick="startNoise(types.brown)" id="brown">▶ Brown Noise</button>
         <button onclick="startNoise(types.pink)" id="pink">▶ Pink Noise</button>
         <button onclick="startNoise(types.white)" id="white">▶ White Noise</button>
         <button onclick="stopNoise()" id="stop">⛔ Stop Noise</button>
     </main>
+
     <footer>
         <p>There is no tracking, ads or even cookies here. It's absolutely free to use and modify</p>
         <p>Made with pure HTML+CSS+JS</p>
