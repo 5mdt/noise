@@ -48,7 +48,6 @@ function generateWhiteNoise(buffer) {
   }
 }
 
-
 class RandomNoiseProcessor extends AudioWorkletProcessor {
   constructor (options) {
     super();
