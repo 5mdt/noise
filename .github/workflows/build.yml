@@ -28,8 +28,7 @@ jobs:
           minify -r -o ./pages/ ./*.html
           minify -r -o ./pages/ ./*.js
           minify -r -o ./pages/ ./*.svg
-          cp ./*.png ./pages/
-          cp ./LICENSE ./pages/
+          cp ./LICENSE* ./pages/
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
