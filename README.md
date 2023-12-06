@@ -29,7 +29,7 @@ To use the 5mdt Noise Generator, simply open the `index.html` file in a web brow
 1. Open the `index.html` file in your web browser.
 2. Click on the "Play Brown Noise," "Play White Noise," or "Play Pink Noise" buttons to start playing the corresponding noise type.
 3. Adjust the volume as needed using the system controls.
-To stop the noise, close the browser tab, or press the "Stop Noise" button.
+   To stop the noise, close the browser tab, or press the "Stop Noise" button.
 
 ## License
 
