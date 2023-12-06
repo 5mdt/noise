@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="UTF-8">
+
 <head>
     <title>5mdt Noise Generator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="apple-touch-icon" href="logo_mono.svg">
     <link rel="icon" href="logo_mono.svg">
     <style>
-
         body {
             font-family: sans-serif;
             text-align: center;
-            transition: background-color 0.3s, color 0.3s; /* Add transition for smooth theme change */
+            transition: background-color 0.3s, color 0.3s;
+            /* Add transition for smooth theme change */
         }
 
         .container {
@@ -112,107 +113,109 @@
         }
     </style>
     <script>
-      let audioContext;
-      const types = {
-        pink: "pink",
-        brown: "brown",
-        white: "white",
-      }
-      let countdownTimer;
-      let durationInSeconds = 0;
+        let audioContext;
+        const types = {
+            pink: "pink",
+            brown: "brown",
+            white: "white",
+        }
+        let countdownTimer;
+        let durationInSeconds = 0;
 
-      async function startNoise(type) {
-          const timerInput = document.getElementById("timer");
-          durationInSeconds = getDurationInSeconds(timerInput.value);
+        async function startNoise(type) {
+            const timerInput = document.getElementById("timer");
+            durationInSeconds = getDurationInSeconds(timerInput.value);
 
-          if (durationInSeconds > 0) {
-              startTimer();
-          }
+            if (durationInSeconds > 0) {
+                startTimer();
+            }
 
-          await stopNoise();
-          audioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 96000 });
-          await audioContext.audioWorklet.addModule("RandomNoiseProcessor.js");
-          const randomNoiseNode = new AudioWorkletNode(
-              audioContext,
-              "RandomNoiseProcessor",
-              {
-                  processorOptions: {
-                      type,
-                  }
-              }
-          );
-          randomNoiseNode.connect(audioContext.destination);
-      }
+            await stopNoise();
+            audioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 96000 });
+            await audioContext.audioWorklet.addModule("RandomNoiseProcessor.js");
+            const randomNoiseNode = new AudioWorkletNode(
+                audioContext,
+                "RandomNoiseProcessor",
+                {
+                    processorOptions: {
+                        type,
+                    }
+                }
+            );
+            randomNoiseNode.connect(audioContext.destination);
+        }
 
-      async function stopNoise() {
-          if (audioContext) {
-              await audioContext.close();
-              audioContext = null;
-              stopTimer();
-          }
-      }
+        async function stopNoise() {
+            if (audioContext) {
+                await audioContext.close();
+                audioContext = null;
+                stopTimer();
+            }
+        }
 
-      function startTimer() {
-          countdownTimer = setInterval(function () {
-              durationInSeconds--;
-              if (durationInSeconds <= 0) {
-                  stopNoise();
-              }
-              updateTimerInput();
-          }, 1000);
-      }
+        function startTimer() {
+            countdownTimer = setInterval(function () {
+                durationInSeconds--;
+                if (durationInSeconds <= 0) {
+                    stopNoise();
+                }
+                updateTimerInput();
+            }, 1000);
+        }
 
-      function stopTimer() {
-          clearInterval(countdownTimer);
-      }
+        function stopTimer() {
+            clearInterval(countdownTimer);
+        }
 
-      function updateTimerInput() {
-          const timerInput = document.getElementById("timer");
-          const hours = Math.floor(durationInSeconds / 3600);
-          const minutes = Math.floor((durationInSeconds % 3600) / 60);
-          const seconds = durationInSeconds % 60;
-          const formattedTime = `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
-          timerInput.value = formattedTime;
-    }
+        function updateTimerInput() {
+            const timerInput = document.getElementById("timer");
+            const hours = Math.floor(durationInSeconds / 3600);
+            const minutes = Math.floor((durationInSeconds % 3600) / 60);
+            const seconds = durationInSeconds % 60;
+            const formattedTime = `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
+            timerInput.value = formattedTime;
+        }
 
-      function getDurationInSeconds(timeValue) {
-          const [hours, minutes, seconds] = timeValue.split(":").map(Number);
-          return (hours * 60 * 60) + (minutes * 60) + (seconds);
-      }
+        function getDurationInSeconds(timeValue) {
+            const [hours, minutes, seconds] = timeValue.split(":").map(Number);
+            return (hours * 60 * 60) + (minutes * 60) + (seconds);
+        }
 
-      function padZero(number) {
-          return number < 10 ? `0${number}` : number;
-      }
+        function padZero(number) {
+            return number < 10 ? `0${number}` : number;
+        }
 
     </script>
 
 </head>
-<body>
-<div class="container">
-    <header>
-        <h1>5mdt <br/>Noise Generator</h1>
-    </header>
-    <main>
-        <label for="#timer">Timer (mm:ss):</label>
-        <input type="time" id="timer" value="00:00:00">
-        <button onclick="startNoise(types.brown)" id="brown">▶ Brown Noise</button>
-        <button onclick="startNoise(types.pink)" id="pink">▶ Pink Noise</button>
-        <button onclick="startNoise(types.white)" id="white">▶ White Noise</button>
-        <button onclick="stopNoise()" id="stop">⛔ Stop Noise</button>
-    </main>
 
-    <footer>
-        <p>There is no tracking, ads or even cookies here. It's absolutely free to use and modify</p>
-        <p>Made with pure HTML+CSS+JS</p>
-        <p>Authors (alphabetically):</p>
-        <p>- <a href="https://github.com/akamenskiy">@akamenskiy</a> (JS)</p>
-        <p>- <a href="https://github.com/kawaiier">@kawaiier</a> (CSS)</p>
-        <p>- <a href="https://github.com/nett00n">@nett00n</a> (Maintainer)</p>
-        <p>- <a href="https://www.behance.net/levichevatn">Belka</a> (Logo)</p>
-        <p>Source Code is placed on <a href="https://github.com/5mdt/noise">Github</a></p>
-        <p>This project is licensed under the <a href="LICENSE">MIT License</a></p>
-        <p>2023</p>
-    </footer>
-</div>
+<body>
+    <div class="container">
+        <header>
+            <h1>5mdt <br />Noise Generator</h1>
+        </header>
+        <main>
+            <label for="#timer">Timer (mm:ss):</label>
+            <input type="time" id="timer" value="00:00:00">
+            <button onclick="startNoise(types.brown)" id="brown">▶ Brown Noise</button>
+            <button onclick="startNoise(types.pink)" id="pink">▶ Pink Noise</button>
+            <button onclick="startNoise(types.white)" id="white">▶ White Noise</button>
+            <button onclick="stopNoise()" id="stop">⛔ Stop Noise</button>
+        </main>
+
+        <footer>
+            <p>There is no tracking, ads or even cookies here. It's absolutely free to use and modify</p>
+            <p>Made with pure HTML+CSS+JS</p>
+            <p>Authors (alphabetically):</p>
+            <p>- <a href="https://github.com/akamenskiy">@akamenskiy</a> (JS)</p>
+            <p>- <a href="https://github.com/kawaiier">@kawaiier</a> (CSS)</p>
+            <p>- <a href="https://github.com/nett00n">@nett00n</a> (Maintainer)</p>
+            <p>- <a href="https://www.behance.net/levichevatn">Belka</a> (Logo)</p>
+            <p>Source Code is placed on <a href="https://github.com/5mdt/noise">Github</a></p>
+            <p>This project is licensed under the <a href="LICENSE">MIT License</a></p>
+            <p>2023</p>
+        </footer>
+    </div>
 </body>
+
 </html>
