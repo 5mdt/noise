@@ -23,7 +23,7 @@ jobs:
 
       - name: Install and run minify
         run: |
-          go install github.com/tdewolff/minify/v2/cmd/minify@latest
+          go install github.com/tdewolff/minify/v2/cmd/minify@v2.20.6
           mkdir -p ./pages
           minify -r -o ./pages/ ./*.html
           minify -r -o ./pages/ ./*.js
