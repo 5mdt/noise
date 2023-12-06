@@ -168,15 +168,16 @@
 
       function updateTimerInput() {
           const timerInput = document.getElementById("timer");
-          const minutes = Math.floor(durationInSeconds / 60);
+          const hours = Math.floor(durationInSeconds / 3600);
+          const minutes = Math.floor((durationInSeconds % 3600) / 60);
           const seconds = durationInSeconds % 60;
-          const formattedTime = `${padZero(minutes)}:${padZero(seconds)}`;
+          const formattedTime = `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
           timerInput.value = formattedTime;
-      }
+    }
 
       function getDurationInSeconds(timeValue) {
-          const [minutes, seconds] = timeValue.split(":").map(Number);
-          return minutes * 60 + seconds;
+          const [hours, minutes, seconds] = timeValue.split(":").map(Number);
+          return (hours * 60 * 60) + (minutes * 60) + (seconds);
       }
 
       function padZero(number) {
@@ -193,7 +194,7 @@
     </header>
     <main>
         <label for="#timer">Timer (mm:ss):</label>
-        <input type="time" id="timer" value="00:00">
+        <input type="time" id="timer" value="00:00:00">
         <button onclick="startNoise(types.brown)" id="brown">▶ Brown Noise</button>
         <button onclick="startNoise(types.pink)" id="pink">▶ Pink Noise</button>
         <button onclick="startNoise(types.white)" id="white">▶ White Noise</button>
