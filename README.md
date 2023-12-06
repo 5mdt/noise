@@ -6,6 +6,8 @@
 ![JavaScript Badge](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=flat-square)
 ![GitHub Pages Badge](https://img.shields.io/badge/GitHub%20Pages-222?logo=githubpages&logoColor=fff&style=flat-square)
 
+<img src = "logo_color.jpg" width = "400" height = "400" alt = "Logo by Belka">
+
 ## Description
 
 The 5mdt Noise Generator is a web-based application that generates different types of noises locally, including brown, white, and pink noise. It allows users to play these noises and control their volume.
