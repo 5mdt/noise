@@ -31,7 +31,6 @@ takes precedence.
 TL;DR for this licence was taken from
 [TLDRLegal](https://www.tldrlegal.com/license/apache-license-2-0-apache-2-0)
 
-
 ---
 
 **Disclaimer:** This TL;DR summary is provided for convenience and informational
