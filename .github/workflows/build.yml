@@ -26,7 +26,8 @@ jobs:
           go install github.com/tdewolff/minify/v2/cmd/minify@latest
           mkdir -p ./pages
           minify -r -o ./pages/ ./*.html
-          minify -r -o ./pages/ ./*.js          
+          minify -r -o ./pages/ ./*.js
+          minify -r -o ./pages/ ./*.svg
           cp ./*.png ./pages/
           cp ./LICENSE ./pages/
 

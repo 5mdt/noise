@@ -35,9 +35,10 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Authors (alphabetically)
 
-- [@akamenskiy](https://github.com/akamenskiy)
-- [@kawaiier](https://github.com/kawaiier)
-- [@nett00n](https://github.com/nett00n)
+- [@akamenskiy](https://github.com/akamenskiy) (JS)
+- [@kawaiier](https://github.com/kawaiier) (CSS)
+- [@nett00n](https://github.com/nett00n) (Maintainer)
+- [Belka](https://www.behance.net/levichevatn) (Logo)
 
 ---
 
