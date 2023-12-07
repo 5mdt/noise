@@ -113,24 +113,31 @@
         }
     </style>
     <script>
-        let audioContext;
         const types = {
             pink: "pink",
             brown: "brown",
             white: "white",
         }
-        let countdownTimer;
-        let durationInSeconds = 0;
 
-        async function startNoise(type) {
-            const timerInput = document.getElementById("timer");
-            durationInSeconds = getDurationInSeconds(timerInput.value);
+        let audioContext;
 
-            if (durationInSeconds > 0) {
-                startTimer();
+        const getUserDurationInputValue = () => {
+            const input = document.getElementById("timer");
+            const duration = getDurationInSeconds(input.value);
+            return duration
+        }
+
+
+        async function handleStartNoise(type) {
+            if (audioContext) {
+                await stopNoise();
+                stopTimer(timer);
+                return;
             }
 
-            await stopNoise();
+            const durationInSeconds = getUserDurationInputValue();
+            const timer = startTimer(durationInSeconds);
+
             audioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 96000 });
             await audioContext.audioWorklet.addModule("RandomNoiseProcessor.js");
             const randomNoiseNode = new AudioWorkletNode(
@@ -145,33 +152,33 @@
             randomNoiseNode.connect(audioContext.destination);
         }
 
+        async function handleStopNoise() {
+            await stopNoise();
+            clearInterval();
+        }
+
         async function stopNoise() {
-            if (audioContext) {
-                await audioContext.close();
-                audioContext = null;
-                stopTimer();
-            }
+            await audioContext.close();
+            audioContext = null;
         }
 
-        function startTimer() {
-            countdownTimer = setInterval(function () {
-                durationInSeconds--;
-                if (durationInSeconds <= 0) {
-                    stopNoise();
+        function startTimer(duration) {
+            const timer = setInterval(() => {
+                duration--;
+                if (duration <= 0) {
+                    handleStopNoise();
+                    clearInterval(timer);
                 }
-                updateTimerInput();
+                updateTimerInput(duration);
             }, 1000);
+            return timer;
         }
 
-        function stopTimer() {
-            clearInterval(countdownTimer);
-        }
-
-        function updateTimerInput() {
+        function updateTimerInput(value) {
             const timerInput = document.getElementById("timer");
-            const hours = Math.floor(durationInSeconds / 3600);
-            const minutes = Math.floor((durationInSeconds % 3600) / 60);
-            const seconds = durationInSeconds % 60;
+            const hours = Math.floor(value / 3600);
+            const minutes = Math.floor((value % 3600) / 60);
+            const seconds = value % 60;
             const formattedTime = `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
             timerInput.value = formattedTime;
         }
@@ -197,10 +204,10 @@
         <main>
             <label for="#timer">Timer (mm:ss):</label>
             <input type="time" id="timer" value="00:00:00">
-            <button onclick="startNoise(types.brown)" id="brown">▶ Brown Noise</button>
-            <button onclick="startNoise(types.pink)" id="pink">▶ Pink Noise</button>
-            <button onclick="startNoise(types.white)" id="white">▶ White Noise</button>
-            <button onclick="stopNoise()" id="stop">⛔ Stop Noise</button>
+            <button onclick="handleStartNoise(types.brown)" id="brown">▶ Brown Noise</button>
+            <button onclick="handleStartNoise(types.pink)" id="pink">▶ Pink Noise</button>
+            <button onclick="handleStartNoise(types.white)" id="white">▶ White Noise</button>
+            <button onclick="handleStopNoise()" id="stop">⛔ Stop Noise</button>
         </main>
 
         <footer>
@@ -208,6 +215,7 @@
             <p>Made with pure HTML+CSS+JS</p>
             <p>Authors (alphabetically):</p>
             <p>- <a href="https://github.com/akamenskiy">@akamenskiy</a> (JS)</p>
+            <p>- <a href="https://github.com/asyavee">@asyavee</a> (JS)</p>
             <p>- <a href="https://github.com/kawaiier">@kawaiier</a> (CSS)</p>
             <p>- <a href="https://github.com/nett00n">@nett00n</a> (Maintainer)</p>
             <p>- <a href="https://www.behance.net/levichevatn">Belka</a> (Logo)</p>
