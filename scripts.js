@@ -87,3 +87,22 @@ function getDurationInSeconds(timeValue) {
 function padZero(number) {
     return number < 10 ? `0${number}` : number;
 }
+
+const theme = localStorage.getItem('theme')
+const toggle = document.getElementById('toggle')
+const setTheme = (theme) => {
+    if (!theme) {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)')
+        toggle.checked = prefersDark.matches
+    } else {
+        toggle.checked = theme === 'dark'
+    }
+}
+setTheme(theme)
+const handleToggle = () => {
+    if (toggle.checked) {
+        localStorage.setItem('theme', 'dark')
+    } else {
+        localStorage.setItem('theme', 'light')
+    }
+}

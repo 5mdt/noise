@@ -11,12 +11,18 @@
 </head>
 
 <body>
+    <div class="toggle">
+        <input onclick="handleToggle()" class="checkbox" type="checkbox" id="toggle">
+        <label for="toggle" class="label">
+            <span class="ball"></span>
+        </label>
+    </div>
     <div class="container">
         <header>
             <h1>5mdt <br />Noise Generator</h1>
         </header>
         <main>
-            <label for="#timer">Timer (mm:ss):</label>
+            <label for="timer">Timer (mm:ss):</label>
             <input type="time" id="timer" value="00:00:00">
             <button onclick="handleStartNoise(types.brown)" id="brown">▶ Brown Noise</button>
             <button onclick="handleStartNoise(types.pink)" id="pink">▶ Pink Noise</button>
