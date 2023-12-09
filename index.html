@@ -7,193 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="apple-touch-icon" href="logo_mono.svg">
     <link rel="icon" href="logo_mono.svg">
-    <style>
-        body {
-            font-family: sans-serif;
-            text-align: center;
-            transition: background-color 0.3s, color 0.3s;
-            /* Add transition for smooth theme change */
-        }
-
-        .container {
-            max-width: 620px;
-            margin: 0 auto;
-        }
-
-        /* Light mode */
-        @media (prefers-color-scheme: light) {
-            body {
-                background-color: white;
-                color: black;
-            }
-        }
-
-        /* Dark mode */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: black;
-                color: white;
-            }
-        }
-
-        h1 {
-            margin-top: 20px;
-            font-size: 2.2em;
-            font-weight: 800;
-        }
-
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 16px 20%;
-        }
-
-        button {
-            margin: 10px;
-            padding: 10px 20px;
-            font-size: 1.5em;
-            width: 100%;
-            border: none;
-            background-color: #3498db;
-            color: black;
-            cursor: pointer;
-            border-radius: 4px;
-            border-bottom: 1px solid rgba(15, 17, 17, 0.25);
-            font-family: sans-serif;
-        }
-
-        a {
-            color: #3498db;
-            text-decoration: none;
-        }
-
-        button:hover {
-            background-color: #2980b9;
-        }
-
-        #brown {
-            background-color: #c1b3a8;
-        }
-
-        #pink {
-            background-color: #FFD1DC;
-        }
-
-        #white {
-            background-color: #F3F8FF;
-        }
-
-        #stop {
-            background-color: #FFA8A8;
-            margin-top: 48px;
-        }
-
-        footer {
-            color: grey;
-        }
-
-        #timer {
-            margin-bottom: 15px;
-            font-size: 1.2em;
-            padding: 12px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        #timer.active {
-            background-color: #FFA8A8;
-            color: white;
-        }
-
-        @media only screen and (max-width: 600px) {
-            button {
-                /* font-size: 14px; */
-            }
-        }
-    </style>
-    <script>
-        const types = {
-            pink: "pink",
-            brown: "brown",
-            white: "white",
-        }
-
-        let audioContext;
-
-        const getUserDurationInputValue = () => {
-            const input = document.getElementById("timer");
-            const duration = getDurationInSeconds(input.value);
-            return duration
-        }
-
-
-        async function handleStartNoise(type) {
-            if (audioContext) {
-                await stopNoise();
-                stopTimer(timer);
-                return;
-            }
-
-            const durationInSeconds = getUserDurationInputValue();
-            const timer = startTimer(durationInSeconds);
-
-            audioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 96000 });
-            await audioContext.audioWorklet.addModule("RandomNoiseProcessor.js");
-            const randomNoiseNode = new AudioWorkletNode(
-                audioContext,
-                "RandomNoiseProcessor",
-                {
-                    processorOptions: {
-                        type,
-                    }
-                }
-            );
-            randomNoiseNode.connect(audioContext.destination);
-        }
-
-        async function handleStopNoise() {
-            await stopNoise();
-            clearInterval();
-        }
-
-        async function stopNoise() {
-            await audioContext.close();
-            audioContext = null;
-        }
-
-        function startTimer(duration) {
-            const timer = setInterval(() => {
-                duration--;
-                if (duration <= 0) {
-                    handleStopNoise();
-                    clearInterval(timer);
-                }
-                updateTimerInput(duration);
-            }, 1000);
-            return timer;
-        }
-
-        function updateTimerInput(value) {
-            const timerInput = document.getElementById("timer");
-            const hours = Math.floor(value / 3600);
-            const minutes = Math.floor((value % 3600) / 60);
-            const seconds = value % 60;
-            const formattedTime = `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
-            timerInput.value = formattedTime;
-        }
-
-        function getDurationInSeconds(timeValue) {
-            const [hours, minutes, seconds] = timeValue.split(":").map(Number);
-            return (hours * 60 * 60) + (minutes * 60) + (seconds);
-        }
-
-        function padZero(number) {
-            return number < 10 ? `0${number}` : number;
-        }
-
-    </script>
-
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
@@ -215,7 +29,7 @@
             <p>Made with pure HTML+CSS+JS</p>
             <p>Authors (alphabetically):</p>
             <p>- <a href="https://github.com/akamenskiy">@akamenskiy</a> (JS)</p>
-            <p>- <a href="https://github.com/asyavee">@asyavee</a> (JS)</p>
+            <p>- <a href="https://github.com/asyavee">@asyavee</a> (JS, CSS)</p>
             <p>- <a href="https://github.com/kawaiier">@kawaiier</a> (CSS)</p>
             <p>- <a href="https://github.com/nett00n">@nett00n</a> (Maintainer)</p>
             <p>- <a href="https://www.behance.net/levichevatn">Belka</a> (Logo)</p>
@@ -225,5 +39,5 @@
         </footer>
     </div>
 </body>
-
+<script type="text/javascript" src="scripts.js"></script>
 </html>
