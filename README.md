@@ -29,17 +29,7 @@ To use the 5mdt Noise Generator, simply open the `index.html` file in a web brow
 1. Open the `index.html` file in your web browser.
 2. Click on the "Play Brown Noise," "Play White Noise," or "Play Pink Noise" buttons to start playing the corresponding noise type.
 3. Adjust the volume as needed using the system controls.
-   To stop the noise, close the browser tab, or press the "Stop Noise" button.
-
-## Development
-
-Unfortunately due to the separated `index.html` and `RandomNoiseProcessor.js` opening html file in the browser triggers CORS errors. You can serve nginx on a local port with the following command
-
-```bash
-docker run -it --rm -v $PWD:/usr/share/nginx/html/ -p 8081:80 nginx:alpine
-```
-
-- Please use 4 spaces tabulation
+To stop the noise, close the browser tab, or press the "Stop Noise" button.
 
 ## License
 
@@ -48,7 +38,6 @@ This project is licensed under the [MIT License](LICENSE).
 ## Authors (alphabetically)
 
 - [@akamenskiy](https://github.com/akamenskiy) (JS)
-- [@asyavee](https://github.com/asyavee) (JS)
 - [@kawaiier](https://github.com/kawaiier) (CSS)
 - [@nett00n](https://github.com/nett00n) (Maintainer)
 - [Belka](https://www.behance.net/levichevatn) (Logo)
