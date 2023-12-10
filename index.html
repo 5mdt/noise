@@ -7,150 +7,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="apple-touch-icon" href="logo_mono.svg">
     <link rel="icon" href="logo_mono.svg">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            transition: background-color 0.3s, color 0.3s;
-            /* Add transition for smooth theme change */
-        }
-
-        .container {
-            max-width: 620px;
-            margin: 0 auto;
-        }
-
-        /* Light mode */
-        @media (prefers-color-scheme: light) {
-            body {
-                background-color: white;
-                color: black;
-            }
-        }
-
-        /* Dark mode */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: black;
-                color: white;
-            }
-        }
-
-        h1 {
-            margin-top: 20px;
-            font-size: 2.2em;
-            font-weight: 800;
-        }
-
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 16px 20%;
-        }
-
-        button {
-            margin: 10px;
-            padding: 10px 20px;
-            font-size: 1.5em;
-            width: 100%;
-            border: none;
-            background-color: #3498db;
-            color: black;
-            cursor: pointer;
-            border-radius: 4px;
-            border-bottom: 1px solid rgba(15, 17, 17, 0.25);
-            font-family: 'Arial', sans-serif;
-        }
-
-        a {
-            color: #3498db;
-            text-decoration: none;
-        }
-
-        button:hover {
-            background-color: #2980b9;
-        }
-
-        #brown {
-            background-color: #c1b3a8;
-        }
-
-        #pink {
-            background-color: #FFD1DC;
-        }
-
-        #white {
-            background-color: #F3F8FF;
-        }
-
-        #stop {
-            background-color: #FFA8A8;
-            margin-top: 48px;
-        }
-
-        footer {
-            color: grey;
-        }
-
-        /* Responsive styles */
-        @media only screen and (max-width: 600px) {
-            button {
-                /* font-size: 14px; */
-            }
-        }
-    </style>
-    <script>
-        let audioContext;
-        const types = {
-            pink: "pink",
-            brown: "brown",
-            white: "white",
-        }
-
-        async function startNoise(type) {
-            await stopNoise();
-            audioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 96000 });
-            await audioContext.audioWorklet.addModule("RandomNoiseProcessor.js");
-            const randomNoiseNode = new AudioWorkletNode(
-                audioContext,
-                "RandomNoiseProcessor",
-                {
-                    processorOptions: {
-                        type,
-                    }
-                }
-            );
-            randomNoiseNode.connect(audioContext.destination);
-        }
-
-        async function stopNoise() {
-            if (audioContext) {
-                await audioContext.close()
-                audioContext = null;
-            }
-        }
-
-    </script>
-
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
+    <div class="toggle">
+        <input onclick="handleToggle()" class="checkbox" type="checkbox" id="toggle">
+        <label for="toggle" class="label">
+            <span class="ball"></span>
+        </label>
+    </div>
     <div class="container">
         <header>
             <h1>5mdt <br />Noise Generator</h1>
         </header>
         <main>
-            <button onclick="startNoise(types.brown)" id="brown">▶ Brown Noise</button>
-            <button onclick="startNoise(types.pink)" id="pink">▶ Pink Noise</button>
-            <button onclick="startNoise(types.white)" id="white">▶ White Noise</button>
-            <button onclick="stopNoise()" id="stop">⛔ Stop Noise</button>
+            <label for="timer">Timer (mm:ss):</label>
+            <input type="time" id="timer" value="00:00:00">
+            <button onclick="handleStartNoise(types.brown)" id="brown">▶ Brown Noise</button>
+            <button onclick="handleStartNoise(types.pink)" id="pink">▶ Pink Noise</button>
+            <button onclick="handleStartNoise(types.white)" id="white">▶ White Noise</button>
+            <button onclick="handleStopNoise()" id="stop">⛔ Stop Noise</button>
         </main>
+
         <footer>
             <p>There is no tracking, ads or even cookies here. It's absolutely free to use and modify</p>
             <p>Made with pure HTML+CSS+JS</p>
             <p>Authors (alphabetically):</p>
             <p>- <a href="https://github.com/akamenskiy">@akamenskiy</a> (JS)</p>
+            <p>- <a href="https://github.com/asyavee">@asyavee</a> (JS, CSS)</p>
             <p>- <a href="https://github.com/kawaiier">@kawaiier</a> (CSS)</p>
             <p>- <a href="https://github.com/nett00n">@nett00n</a> (Maintainer)</p>
             <p>- <a href="https://www.behance.net/levichevatn">Belka</a> (Logo)</p>
@@ -160,5 +45,5 @@
         </footer>
     </div>
 </body>
-
+<script type="text/javascript" src="scripts.js"></script>
 </html>
