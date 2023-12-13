@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="UTF-8">
+
 <head>
     <title>5mdt Noise Generator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="apple-touch-icon" href="logo_mono.svg">
     <link rel="icon" href="logo_mono.svg">
     <style>
-
         body {
             font-family: 'Arial', sans-serif;
             text-align: center;
-            transition: background-color 0.3s, color 0.3s; /* Add transition for smooth theme change */
+            transition: background-color 0.3s, color 0.3s;
+            /* Add transition for smooth theme change */
         }
 
         .container {
@@ -100,64 +101,64 @@
         }
     </style>
     <script>
-      let audioContext;
-      const types = {
-        pink: "pink",
-        brown: "brown",
-        white: "white",
-      }
-
-      // Function to start playing the noise
-      async function startNoise(type) {
-        await stopNoise();
-        audioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 96000 });
-        await audioContext.audioWorklet.addModule("RandomNoiseProcessor.js");
-        const randomNoiseNode = new AudioWorkletNode(
-          audioContext,
-          "RandomNoiseProcessor",
-          {
-            processorOptions: {
-              type,
-            }
-          }
-        );
-        randomNoiseNode.connect(audioContext.destination);
-      }
-
-      // Function to stop playing the noise
-      async function stopNoise() {
-        if (audioContext) {
-          await audioContext.close()
-          audioContext = null;
+        let audioContext;
+        const types = {
+            pink: "pink",
+            brown: "brown",
+            white: "white",
         }
-      }
+
+        async function startNoise(type) {
+            await stopNoise();
+            audioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 96000 });
+            await audioContext.audioWorklet.addModule("RandomNoiseProcessor.js");
+            const randomNoiseNode = new AudioWorkletNode(
+                audioContext,
+                "RandomNoiseProcessor",
+                {
+                    processorOptions: {
+                        type,
+                    }
+                }
+            );
+            randomNoiseNode.connect(audioContext.destination);
+        }
+
+        async function stopNoise() {
+            if (audioContext) {
+                await audioContext.close()
+                audioContext = null;
+            }
+        }
 
     </script>
 
 </head>
+
 <body>
-<div class="container">
-    <header>
-        <h1>5mdt <br/>Noise Generator</h1>
-    </header>
-    <main>
-        <button onclick="startNoise(types.brown)" id="brown">▶ Brown Noise</button>
-        <button onclick="startNoise(types.pink)" id="pink">▶ Pink Noise</button>
-        <button onclick="startNoise(types.white)" id="white">▶ White Noise</button>
-        <button onclick="stopNoise()" id="stop">⛔ Stop Noise</button>
-    </main>
-    <footer>
-        <p>There is no tracking, ads or even cookies here. It's absolutely free to use and modify</p>
-        <p>Made with pure HTML+CSS+JS</p>
-        <p>Authors (alphabetically):</p>
-        <p>- <a href="https://github.com/akamenskiy">@akamenskiy</a> (JS)</p>
-        <p>- <a href="https://github.com/kawaiier">@kawaiier</a> (CSS)</p>
-        <p>- <a href="https://github.com/nett00n">@nett00n</a> (Maintainer)</p>
-        <p>- <a href="https://www.behance.net/levichevatn">Belka</a> (Logo)</p>
-        <p>Source Code is placed on <a href="https://github.com/5mdt/noise">Github</a></p>
-        <p>This project is licensed under the <a href="LICENSE">MIT License</a></p>
-        <p>2023</p>
-    </footer>
-</div>
+    <div class="container">
+        <header>
+            <h1>5mdt <br />Noise Generator</h1>
+        </header>
+        <main>
+            <button onclick="startNoise(types.brown)" id="brown">▶ Brown Noise</button>
+            <button onclick="startNoise(types.pink)" id="pink">▶ Pink Noise</button>
+            <button onclick="startNoise(types.white)" id="white">▶ White Noise</button>
+            <button onclick="stopNoise()" id="stop">⛔ Stop Noise</button>
+        </main>
+        <footer>
+            <p>There is no tracking, ads or even cookies here. It's absolutely free to use and modify</p>
+            <p>Made with pure HTML+CSS+JS</p>
+            <p>Authors (alphabetically):</p>
+            <p>- <a href="https://github.com/akamenskiy">@akamenskiy</a> (JS)</p>
+            <p>- <a href="https://github.com/kawaiier">@kawaiier</a> (CSS)</p>
+            <p>- <a href="https://github.com/nett00n">@nett00n</a> (Maintainer)</p>
+            <p>- <a href="https://www.behance.net/levichevatn">Belka</a> (Logo)</p>
+            <p>Source Code is placed on <a href="https://github.com/5mdt/noise">Github</a></p>
+            <p>This project is licensed under the <a href="LICENSE">MIT License</a></p>
+            <p>2023</p>
+        </footer>
+    </div>
 </body>
+
 </html>
