@@ -13,7 +13,7 @@ minify_html:
   stage: build
   script:
     - go install github.com/tdewolff/minify/v2/cmd/minify@latest
-    - minify -r -o public/ ./*.html
+    - minify -r -o public/ ./*.html ./*.css ./*.css ./*.js
   artifacts:
     paths:
       - ./public/

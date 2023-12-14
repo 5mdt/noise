@@ -27,6 +27,7 @@ jobs:
           mkdir -p ./pages
           minify -r -o ./pages/ ./*.html
           minify -r -o ./pages/ ./*.js
+          minify -r -o ./pages/ ./*.css
           minify -r -o ./pages/ ./*.svg
           cp ./LICENSE* ./pages/
 
